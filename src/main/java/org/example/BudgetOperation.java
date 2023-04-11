@@ -2,17 +2,21 @@ package org.example;
 
 import java.util.Objects;
 
-public class AccountOperation
+public class BudgetOperation
 {
     private final OperationType type;
-    private final String description;
-    private final int amount;
+    private String description;
+    private int amount;
 
-    AccountOperation(OperationType type, int amount, String description)
+    public BudgetOperation(OperationType type)
     {
         Objects.requireNonNull(type, "type cannot be null");
-        Objects.requireNonNull(description, "description cannot be null");
         this.type = type;
+    }
+
+    BudgetOperation(OperationType type, int amount, String description)
+    {
+        this(type);
         this.amount = amount;
         this.description = description;
     }
@@ -35,6 +39,9 @@ public class AccountOperation
     public static enum OperationType
     {
         DEPOSIT,
-        WITHDRAW
+        WITHDRAW,
+        SHUTDOWN,
+        NEXT_DAY,
+        INFO
     }
 }
